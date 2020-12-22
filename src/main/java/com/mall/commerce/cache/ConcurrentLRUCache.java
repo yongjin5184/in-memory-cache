@@ -6,6 +6,10 @@ import java.util.concurrent.locks.ReentrantReadWriteLock;
 import java.util.concurrent.ConcurrentHashMap;
 import java.util.concurrent.ConcurrentLinkedQueue;
 
+/**
+ *
+ * LRU Cache (Least-Recently Used Cache) 구현
+ */
 public class ConcurrentLRUCache<K, V> {
 
     int cacheSize = 0;
@@ -58,18 +62,18 @@ public class ConcurrentLRUCache<K, V> {
         }
     }
 
-    public V evict(K key) {
+    public void evict() {
         writeLock.lock();
         try {
-            V val = null;
-            if (map.contains(key)) {
-                val = map.remove(key);
-                queue.remove(key);
-            }
-            return val;
+            K queueKey = queue.poll();
+            map.remove(queueKey);
         } finally {
             writeLock.unlock();
         }
+    }
+
+    public boolean isFullCacheSize() {
+        return cacheSize == map.size();
     }
 }
 
