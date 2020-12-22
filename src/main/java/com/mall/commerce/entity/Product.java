@@ -5,10 +5,12 @@ import lombok.*;
 import javax.persistence.*;
 import java.math.BigDecimal;
 
-@NoArgsConstructor(access = AccessLevel.PROTECTED)
+@NoArgsConstructor
 @Getter
 @Entity
 @Table(name = "product")
+@Setter
+@EqualsAndHashCode
 public class Product {
 
     @Id
@@ -29,4 +31,8 @@ public class Product {
     @JoinColumn(name = "category_no")
     private Category category;
 
+    public void update(String productName, BigDecimal productPrice) {
+        this.productName = productName;
+        this.productPrice = productPrice;
+    }
 }
