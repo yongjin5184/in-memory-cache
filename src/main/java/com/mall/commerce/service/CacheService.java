@@ -21,7 +21,7 @@ public class CacheService {
 
     private final ProductRepository productRepository;
     private final CategoryRepository categoryRepository;
-    private ConcurrentLRUCache lruCache = new ConcurrentLRUCache(1);
+    private ConcurrentLRUCache lruCache = new ConcurrentLRUCache(1000);
 
     @PostConstruct
     private void init () {
