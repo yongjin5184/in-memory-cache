@@ -1,8 +1,6 @@
 package com.mall.commerce.entity;
 
-import lombok.AccessLevel;
-import lombok.Getter;
-import lombok.NoArgsConstructor;
+import lombok.*;
 
 import javax.persistence.*;
 
@@ -15,7 +13,7 @@ public class Category {
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     @Column(name= "category_no")
-    private Integer id;
+    private Long id;
 
     @Column(name = "category_name")
     private String categoryName;
@@ -25,4 +23,8 @@ public class Category {
 
     @Column(name = "depth")
     private String depth;
+
+    public void update(String categoryName) {
+        this.categoryName = categoryName;
+    }
 }
