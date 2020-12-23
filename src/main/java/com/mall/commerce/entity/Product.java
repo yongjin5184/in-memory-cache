@@ -9,8 +9,6 @@ import java.math.BigDecimal;
 @Getter
 @Entity
 @Table(name = "product")
-@Setter
-@EqualsAndHashCode
 public class Product {
 
     @Id
