@@ -21,18 +21,18 @@ public class CacheController {
      * 캐쉬에서 상품을 조회하여 반환한다.
      * 캐쉬 : KEY- 카테고리이름, VALUE- 상품리스트
      */
-    @GetMapping("/categories/{name}/product")
+    @GetMapping("/categories/{name}/products")
     public List<Product> findProductsOnCache(@PathVariable(value = "name") String key) {
-        List<Product> products  = cacheService.findAllProductOnCache(key);
-
-        return products;
+        return cacheService.findAllProductOnCache(key);
     }
 
-    @GetMapping("/categories/{name}/product/{productId}")
+    /**
+     *
+     * 캐쉬에 해당 상품이 있는지 조회한다.
+     */
+    @GetMapping("/categories/{name}/products/{productId}")
     public Product findProductsOnCacheByProductId(
             @PathVariable(value = "name") String key, @PathVariable(value = "productId") Long productId) {
-        Product product  = cacheService.findProductsOnCacheByProductId(key, productId);
-
-        return product;
+        return cacheService.findProductsOnCacheByProductId(key, productId);
     }
 }

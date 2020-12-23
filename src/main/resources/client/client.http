@@ -1,11 +1,18 @@
+### 캐쉬
 ### 상품 조회 (캐쉬에서 찾아서)
 GET http://127.0.0.1:8080/v1/categories/스킨케어/product/1
 Content-Type: application/json
 
 ### 상품 조회 (캐쉬에서 찾아서)
-GET http://127.0.0.1:8080/v1/categories/변경된카테고리이름2/product
+GET http://127.0.0.1:8080/v1/categories/변경된카테고리이름2/products
 Content-Type: application/json
 
+### 상품 조회 (카테고리 이름과 상품 ID 로 캐쉬에서 찾아서)
+GET http://127.0.0.1:8080/v1/categories/스킨케어/products/1
+Content-Type: application/json
+
+
+### 카테고리
 ### 카테고리 이름 변경
 PUT http://127.0.0.1:8080/v1/categories/1
 Content-Type: application/json
@@ -28,6 +35,7 @@ Content-Type: application/json
   "depth" : "2"
 }
 
+### 상품
 ### 상품 변경
 PUT http://127.0.0.1:8080/v1/products/1
 Content-Type: application/json

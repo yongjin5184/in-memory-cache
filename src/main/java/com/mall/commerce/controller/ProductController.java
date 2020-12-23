@@ -17,7 +17,6 @@ public class ProductController {
     private final ProductService productService;
 
     /**
-     *
      * @param productId
      * @return 특정 상품을 변경한다.
      */
@@ -30,9 +29,7 @@ public class ProductController {
 
     @PostMapping("/products")
     public ResponseEntity<Product> createProduct(@RequestBody CreateProductRequest createProductRequest) {
-        Product product = productService.create(createProductRequest);
-
-        return ResponseEntity.ok(product);
+        return ResponseEntity.ok(productService.create(createProductRequest));
     }
 
 }

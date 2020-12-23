@@ -18,7 +18,6 @@ public class CategoryService {
     private final CategoryRepository categoryRepository;
 
     /**
-     *
      * @param categoryId
      * @return 카테고리 ID 에 해당하는 카테고리
      */
@@ -27,7 +26,6 @@ public class CategoryService {
     }
 
     /**
-     *
      * @param categoryId
      * @param updateCategoryRequest
      * @return 변경된 카테고리
@@ -42,7 +40,6 @@ public class CategoryService {
     }
 
     /**
-     *
      * @return 모든 카테고리 리스트
      */
     public List<Category> findAllCategories() {
@@ -50,7 +47,6 @@ public class CategoryService {
     }
 
     /**
-     *
      * @param categoryName
      * @return 카테고리 이름에 해당하는 카테고리
      */
@@ -59,7 +55,6 @@ public class CategoryService {
     }
 
     /**
-     *
      * @param parentId
      * @return 부모 카테고리를 갖는 카테고리 리스트
      */
