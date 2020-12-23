@@ -8,7 +8,7 @@ import java.util.List;
 
 @Repository
 public interface CategoryRepository extends JpaRepository<Category, Long> {
-    List<Category> findAllByParentNo(Integer parentNo);
+    List<Category> findAllByParentNo(Long parentNo);
 
     Category findByCategoryName(String categoryName);
 }

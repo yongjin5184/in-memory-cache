@@ -104,7 +104,7 @@ public class CacheService {
      * @param parentNo
      * @return 부모 카테고리에 속하는 카테고리 리스트
      */
-    public List<Category> findAllCategoriesByParentNo(Integer parentNo) {
+    public List<Category> findAllCategoriesByParentNo(Long parentNo) {
         return categoryRepository.findAllByParentNo(parentNo);
     }
 }
