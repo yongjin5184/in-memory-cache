@@ -27,7 +27,7 @@ public class CacheService {
     private void init () {
         List<Category> allCategories = findAllCategories();
         for (Category parentCategory : allCategories) {
-            List<Category> childCategories = findAllCategoriesByParentNo(parentCategory.getId());
+            List<Category> childCategories = findAllCategoriesByParentId(parentCategory.getId());
             List<Product> productsByCategory = findAllProductsByCategory(parentCategory);
             for (Category childCategory : childCategories) {
                 lruCache.put(parentCategory.getCategoryName() + "-" + childCategory.getCategoryName(), productsByCategory);
@@ -101,10 +101,10 @@ public class CacheService {
 
     /**
      *
-     * @param parentNo
+     * @param parentId
      * @return 부모 카테고리에 속하는 카테고리 리스트
      */
-    public List<Category> findAllCategoriesByParentNo(Long parentNo) {
-        return categoryRepository.findAllByParentNo(parentNo);
+    public List<Category> findAllCategoriesByParentId(Long parentId) {
+        return categoryRepository.findAllByParentId(parentId);
     }
 }

@@ -19,7 +19,7 @@ public class Category {
     private String categoryName;
 
     @Column(name = "parent_no")
-    private Long parentNo;
+    private Long parentId;
 
     @Column(name = "depth")
     private String depth;
