@@ -11,6 +11,7 @@ import org.springframework.util.CollectionUtils;
 
 import javax.annotation.PostConstruct;
 import java.util.List;
+import java.util.stream.Collectors;
 
 @RequiredArgsConstructor
 @Service
@@ -58,6 +59,21 @@ public class CacheService {
         return (List<Product>) lruCache.get(key);
     }
 
+    public Product findProductsOnCacheByProductId(String key, Long productId) {
+        List<Product> products = (List<Product>) lruCache.get(key);
+        if (CollectionUtils.isEmpty(products)) {
+            return null;
+        }
+
+        Product findProduct = null;
+        for (Product product : products) {
+            if(product.getId().equals(productId)) {
+                findProduct = product;
+            }
+        }
+
+        return findProduct;
+    }
     /**
      *
      * @param key

@@ -1,5 +1,6 @@
 package com.mall.commerce.controller;
 
+import com.mall.commerce.controller.dto.CreateProductRequest;
 import com.mall.commerce.controller.dto.ProductResponse;
 import com.mall.commerce.controller.dto.UpdateProductRequest;
 import com.mall.commerce.entity.Product;
@@ -26,4 +27,12 @@ public class ProductController {
 
         return ResponseEntity.status(HttpStatus.NO_CONTENT).body(ProductResponse.of(product));
     }
+
+    @PostMapping("/products")
+    public ResponseEntity<Product> createProduct(@RequestBody CreateProductRequest createProductRequest) {
+        Product product = productService.create(createProductRequest);
+
+        return ResponseEntity.ok(product);
+    }
+
 }

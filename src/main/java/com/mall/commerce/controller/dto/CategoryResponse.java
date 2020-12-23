@@ -9,7 +9,7 @@ public class CategoryResponse {
     private Long id;
     private String categoryName;
     private Long parentId;
-    private String depth;
+    private Integer depth;
 
     private CategoryResponse() {
     }

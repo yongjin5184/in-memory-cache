@@ -1,9 +1,11 @@
 package com.mall.commerce.service;
 
+import com.mall.commerce.controller.dto.CreateProductRequest;
 import com.mall.commerce.controller.dto.UpdateProductRequest;
 import com.mall.commerce.entity.Category;
 import com.mall.commerce.entity.Product;
 import com.mall.commerce.exception.NotExistProductException;
+import com.mall.commerce.repository.CategoryRepository;
 import com.mall.commerce.repository.ProductRepository;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -65,5 +67,17 @@ public class ProductService {
      */
     public List<Product> findAllProductsByCategory(Category category) {
         return productRepository.findAllProductsByCategory(category);
+    }
+
+    @Transactional
+    public Product create(CreateProductRequest createProductRequest) {
+        Product product = Product.builder()
+                .brandName(createProductRequest.getBrandName())
+                .productName(createProductRequest.getProductName())
+                .productPrice(createProductRequest.getProductPrice())
+                .category(createProductRequest.getCategory())
+                .build();
+
+        return productRepository.save(product);
     }
 }

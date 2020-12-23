@@ -1,6 +1,7 @@
 package com.mall.commerce.controller;
 
 import com.mall.commerce.controller.dto.CategoryResponse;
+import com.mall.commerce.controller.dto.CreateCategoryRequest;
 import com.mall.commerce.controller.dto.UpdateCategoryRequest;
 import com.mall.commerce.entity.Category;
 import com.mall.commerce.entity.Product;
@@ -37,5 +38,14 @@ public class CategoryController {
     @GetMapping("/categories")
     public ResponseEntity<List<Category>> findCategories() {
         return ResponseEntity.ok(categoryService.findAllCategories());
+    }
+
+    /**
+     *
+     * 카테고리 리스트를 생성한다.
+     */
+    @PostMapping("/categories")
+    public ResponseEntity<Category> createCategory(@RequestBody CreateCategoryRequest createCategoryRequest) {
+        return ResponseEntity.status(HttpStatus.CREATED).body(categoryService.create(createCategoryRequest));
     }
 }

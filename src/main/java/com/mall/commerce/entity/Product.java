@@ -29,6 +29,14 @@ public class Product {
     @JoinColumn(name = "category_no")
     private Category category;
 
+    @Builder
+    public Product(String brandName, String productName, BigDecimal productPrice, Category category) {
+        this.brandName = brandName;
+        this.productName = productName;
+        this.productPrice = productPrice;
+        this.category = category;
+    }
+
     public void update(String productName, BigDecimal productPrice) {
         this.productName = productName;
         this.productPrice = productPrice;

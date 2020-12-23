@@ -22,9 +22,16 @@ public class Category {
     private Long parentId;
 
     @Column(name = "depth")
-    private String depth;
+    private Integer depth;
 
     public void update(String categoryName) {
         this.categoryName = categoryName;
+    }
+
+    @Builder
+    public Category(String categoryName, Long parentId, Integer depth) {
+        this.categoryName = categoryName;
+        this.parentId = parentId;
+        this.depth = depth;
     }
 }

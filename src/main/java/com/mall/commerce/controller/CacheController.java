@@ -22,9 +22,17 @@ public class CacheController {
      * 캐쉬 : KEY- 카테고리이름, VALUE- 상품리스트
      */
     @GetMapping("/categories/{name}/product")
-    public List<Product> getProductsOnCache(@PathVariable(value = "name") String key) {
+    public List<Product> findProductsOnCache(@PathVariable(value = "name") String key) {
         List<Product> products  = cacheService.findAllProductOnCache(key);
 
         return products;
+    }
+
+    @GetMapping("/categories/{name}/product/{productId}")
+    public Product findProductsOnCacheByProductId(
+            @PathVariable(value = "name") String key, @PathVariable(value = "productId") Long productId) {
+        Product product  = cacheService.findProductsOnCacheByProductId(key, productId);
+
+        return product;
     }
 }

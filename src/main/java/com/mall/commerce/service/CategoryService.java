@@ -1,5 +1,6 @@
 package com.mall.commerce.service;
 
+import com.mall.commerce.controller.dto.CreateCategoryRequest;
 import com.mall.commerce.controller.dto.UpdateCategoryRequest;
 import com.mall.commerce.entity.Category;
 import com.mall.commerce.exception.NotExistCategoryException;
@@ -64,5 +65,15 @@ public class CategoryService {
      */
     public List<Category> findAllCategoriesByParentId(Long parentId) {
         return categoryRepository.findAllByParentId(parentId);
+    }
+
+    @Transactional
+    public Category create(CreateCategoryRequest createCategoryRequest) {
+        Category category = Category.builder()
+                .categoryName(createCategoryRequest.getCategoryName())
+                .parentId(createCategoryRequest.getParentId())
+                .depth(createCategoryRequest.getDepth()).build();
+
+        return categoryRepository.save(category);
     }
 }

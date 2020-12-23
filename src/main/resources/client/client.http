@@ -1,4 +1,12 @@
-###
+### 상품 조회 (캐쉬에서 찾아서)
+GET http://127.0.0.1:8080/v1/categories/스킨케어/product/1
+Content-Type: application/json
+
+### 상품 조회 (캐쉬에서 찾아서)
+GET http://127.0.0.1:8080/v1/categories/변경된카테고리이름2/product
+Content-Type: application/json
+
+### 카테고리 이름 변경
 PUT http://127.0.0.1:8080/v1/categories/1
 Content-Type: application/json
 
@@ -6,8 +14,21 @@ Content-Type: application/json
   "categoryName" : "변경된카테고리이름2"
 }
 
+### 전체 카테고리 조회
+GET http://127.0.0.1:8080/v1/categories
+Content-Type: application/json
 
-###
+### 카테고리 생성
+POST http://127.0.0.1:8080/v1/categories
+Content-Type: application/json
+
+{
+  "categoryName" : "새롭게 생성된 카테고리 이름",
+  "parentId" : "1",
+  "depth" : "2"
+}
+
+### 상품 변경
 PUT http://127.0.0.1:8080/v1/products/1
 Content-Type: application/json
 
@@ -15,17 +36,23 @@ Content-Type: application/json
   "productName" : "변경된 상품이름",
   "productPrice" : "1000"
 }
-
-
-###
-GET http://127.0.0.1:8080/v1/categories/변경된카테고리이름2/product
+### 상품 생성
+POST http://127.0.0.1:8080/v1/products
 Content-Type: application/json
 
-<> 2020-12-23T112510.200.json
+{
+  "brandName": "새로운 브랜드 이름",
+  "productName": "새로운 상품이름",
+  "productPrice": "1000",
+  "category": {
+    "id": 1,
+    "categoryName": "스킨케어",
+    "parentNo" : null,
+    "depth" : 1
+  }
+}
 
-###
-GET http://127.0.0.1:8080/v1/categories
-Content-Type: application/json
+
 
 
 
