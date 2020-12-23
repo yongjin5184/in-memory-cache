@@ -20,7 +20,7 @@ public class ProductController {
      * @param productId
      * @return 특정 상품을 변경한다.
      */
-    @PutMapping("/product/{id}")
+    @PutMapping("/products/{id}")
     public ResponseEntity<ProductResponse> update(@PathVariable("id") Long productId, @RequestBody UpdateProductRequest updateProductRequest) {
         Product product = productService.update(productId, updateProductRequest);
 
