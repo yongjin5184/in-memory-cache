@@ -27,7 +27,13 @@ public class CacheController {
     }
 
     /**
-     *
+     * 캐쉬 Refresh
+     */
+    @GetMapping("/categories/{name}/products/refresh")
+    public List<Product> putProductsOnCache(@PathVariable(value = "name") String key) {
+        return cacheService.putProductsOnCache(key);
+    }
+    /**
      * 캐쉬에 해당 상품이 있는지 조회한다.
      */
     @GetMapping("/categories/{name}/products/{productId}")

@@ -61,6 +61,12 @@ public class CacheService {
         return (List<Product>) lruCache.get(key);
     }
 
+    /***
+     *
+     * @param key
+     * @param productId
+     * @return 캐쉬에 해당 상품이 존재하는지 확인하여 존재하면 상품을 리턴한다.
+     */
     public Product findProductsOnCacheByProductId(String key, Long productId) {
         List<Product> products = (List<Product>) lruCache.get(key);
         if (CollectionUtils.isEmpty(products)) {
@@ -75,6 +81,13 @@ public class CacheService {
         }
 
         return findProduct;
+    }
+
+    public List<Product> putProductsOnCache(String key) {
+        List<Product> refreshProducts = getRefreshProducts(key);
+        lruCache.put(key, refreshProducts);
+
+        return (List<Product>) lruCache.get(key);
     }
 
     /**
