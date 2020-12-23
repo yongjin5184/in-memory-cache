@@ -25,7 +25,9 @@ public class CacheService {
         List<Category> allCategories = categoryService.findAllCategories();
         for (Category parentCategory : allCategories) {
             List<Product> productsByCategory = productService.findAllProductsByCategory(parentCategory);
-            lruCache.put(parentCategory.getCategoryName(), productsByCategory);
+            if(parentCategory.getParentId() == null) {
+                lruCache.put(parentCategory.getCategoryName(), productsByCategory);
+            }
 
             List<Category> childCategories = categoryService.findAllCategoriesByParentId(parentCategory.getId());
             for (Category childCategory : childCategories) {
