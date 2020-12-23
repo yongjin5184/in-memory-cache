@@ -1,0 +1,27 @@
+###
+PUT http://127.0.0.1:8080/v1/category/1
+Content-Type: application/json
+
+{
+  "categoryName" : "변경된카테고리이름2"
+}
+
+
+###
+PUT http://127.0.0.1:8080/v1/product/1
+Content-Type: application/json
+
+{
+  "productName" : "변경된 상품이름",
+  "productPrice" : "1000"
+}
+
+
+###
+GET http://127.0.0.1:8080/v1/category/변경된카테고리이름/product
+Content-Type: application/json
+
+<> 2020-12-23T112510.200.json
+
+
+
