@@ -17,7 +17,11 @@ public class CacheController {
 
     private final CacheService cacheService;
 
-    @GetMapping("/category/{name}/product")
+    /**
+     * 캐쉬에서 상품을 조회하여 반환한다.
+     * 캐쉬 : KEY- 카테고리이름, VALUE- 상품리스트
+     */
+    @GetMapping("/categories/{name}/product")
     public List<Product> getProductsOnCache(@PathVariable(value = "name") String key) {
         List<Product> products  = cacheService.findAllProductOnCache(key);
 

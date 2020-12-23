@@ -1,5 +1,5 @@
 ###
-PUT http://127.0.0.1:8080/v1/category/1
+PUT http://127.0.0.1:8080/v1/categories/1
 Content-Type: application/json
 
 {
@@ -18,10 +18,14 @@ Content-Type: application/json
 
 
 ###
-GET http://127.0.0.1:8080/v1/category/변경된카테고리이름/product
+GET http://127.0.0.1:8080/v1/categories/변경된카테고리이름2/product
 Content-Type: application/json
 
 <> 2020-12-23T112510.200.json
+
+###
+GET http://127.0.0.1:8080/v1/categories
+Content-Type: application/json
 
 
 

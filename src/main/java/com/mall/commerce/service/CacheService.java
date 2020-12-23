@@ -4,9 +4,6 @@ import com.mall.commerce.cache.ConcurrentLRUCache;
 import com.mall.commerce.entity.Category;
 import com.mall.commerce.entity.Product;
 import com.mall.commerce.exception.NotExistCategoryProductException;
-import com.mall.commerce.exception.NotExistProductException;
-import com.mall.commerce.repository.CategoryRepository;
-import com.mall.commerce.repository.ProductRepository;
 import com.mall.commerce.utils.CacheUtils;
 import lombok.RequiredArgsConstructor;
 import org.springframework.stereotype.Service;
@@ -19,16 +16,16 @@ import java.util.List;
 @Service
 public class CacheService {
 
-    private final ProductRepository productRepository;
-    private final CategoryRepository categoryRepository;
+    private final ProductService productService;
+    private final CategoryService categoryService;
     private ConcurrentLRUCache lruCache = new ConcurrentLRUCache(1000);
 
     @PostConstruct
     private void init () {
-        List<Category> allCategories = findAllCategories();
+        List<Category> allCategories = categoryService.findAllCategories();
         for (Category parentCategory : allCategories) {
-            List<Category> childCategories = findAllCategoriesByParentId(parentCategory.getId());
-            List<Product> productsByCategory = findAllProductsByCategory(parentCategory);
+            List<Category> childCategories = categoryService.findAllCategoriesByParentId(parentCategory.getId());
+            List<Product> productsByCategory = productService.findAllProductsByCategory(parentCategory);
             for (Category childCategory : childCategories) {
                 lruCache.put(parentCategory.getCategoryName() + "-" + childCategory.getCategoryName(), productsByCategory);
             }
@@ -68,43 +65,8 @@ public class CacheService {
      */
     public List<Product> getRefreshProducts(String key) {
         String CategoryName = CacheUtils.split(key);
-        Category category = categoryRepository.findByCategoryName(CategoryName);
+        Category category = categoryService.findByCategoryName(CategoryName);
 
-        return productRepository.findAllProductsByCategory(category);
-    }
-
-    /**
-     *
-     * @param category
-     * @return 특정 카테고리에 속한 상품 리스트
-     */
-    public List<Product> findAllProductsByCategory(Category category) {
-        return productRepository.findAllProductsByCategory(category);
-    }
-
-    /**
-     *
-     * @param productNo
-     * @return 단일 상품
-     */
-    public Product findByProductNo(Long productNo) {
-        return productRepository.findById(productNo).orElseThrow(NotExistProductException::new);
-    }
-
-    /**
-     *
-     * @return 모든 카테고리 리스트
-     */
-    public List<Category> findAllCategories() {
-        return categoryRepository.findAll();
-    }
-
-    /**
-     *
-     * @param parentId
-     * @return 부모 카테고리에 속하는 카테고리 리스트
-     */
-    public List<Category> findAllCategoriesByParentId(Long parentId) {
-        return categoryRepository.findAllByParentId(parentId);
+        return productService.findAllProductsByCategory(category);
     }
 }
